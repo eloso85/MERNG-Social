@@ -2,16 +2,31 @@ const { ApolloServer } = require('apollo-server');
 const gql = require('graphql-tag');
 const mongoose = require('mongoose');
 
+//
+const Post = require('./models/Post')
 const { MONGODB } = require('./config.js')
 
 const typeDefs = gql`
-    type Query{
-        sayHi: String!
+    type Post{
+        id:ID!
+        body: String!
+        createdAt: String!
+        username: String!
     }
-`
+    type Query{
+        getPosts: [Post]
+    }
+`;
 const resolvers ={    // for each query or mustation or subcription it has corresponding resolver ex if query is say hi it will have return login
     Query:{
-        sayHi: ()=>"hello world"
+        async getPosts(){
+        try {
+            const posts = await Post.find();
+            return posts;
+        } catch (error) {
+            throw new Error(err);
+        }
+        }
     }
 }
 
