@@ -25,10 +25,7 @@ module.exports.validateRegisterInput = (
     return{
         errors,
         valid: Object.keys(errors).length < 1//if length of error is less then 1 then their are no errors
-    }
-}
-
-// const object1 = {
+        // const object1 = {
 //     a: 'somestring',
 //     b: 42,
 //     c: false
@@ -36,3 +33,20 @@ module.exports.validateRegisterInput = (
   
 //   console.log(Object.keys(object1));
   // expected output: Array ["a", "b", "c"]
+    }
+}
+
+module.exports.validateLoginInput = (username, password) => {
+    const errors = {}; // any input that is a empty object makes a error
+    if(username.trim()=== ''){
+        errors.username = 'Username must not be empty';
+    }
+    if ( password.trim()=== ''){
+        errors.password = 'Password must not be empty';
+    }
+    return{
+        errors,
+        valid: Object.keys(errors).length < 1
+    }
+}
+
