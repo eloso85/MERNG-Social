@@ -15,6 +15,14 @@ module.exports = {
              info
              ){
            //TODO Validate user data
+           const { valid, errors } = validateRegisterInput(
+               username, 
+               email, 
+               password, 
+               confirmPassword)
+                if(!valid){
+                    throw new UserInputError('Errors', { errors })
+                }
             //make sure user doesnt already exist
             const user = await User.findOne({ username });//58.27 time video
             if(user){
