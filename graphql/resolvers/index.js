@@ -8,6 +8,7 @@ module.exports ={
         ...postsResolvers.Query
     },
     Mutation:{
-        ...usersResolvers.Mutation//mutation means editing database
+        ...usersResolvers.Mutation,
+        ...postsResolvers.Mutation//mutation means editing database
     }
 }
